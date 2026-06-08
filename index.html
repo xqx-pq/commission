@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>イラスト依頼 - 猫下おこげ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --main-color: #6366f1;
+    --accent-color: #f43f5e;
+    --bg-color: #fef9c3;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --muted-color: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    padding-bottom: 80px;
+  }
+  .hero {
+    background: linear-gradient(135deg, #c084fc 0%, var(--main-color) 100%);
+    padding: 60px 20px 100px;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero h1 { font-size: 2rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 0.05em; }
+  .hero p { font-size: 1rem; opacity: 0.95; margin-bottom: 40px; }
+  .carousel-3d {
+    perspective: 1000px;
+    width: 100%; max-width: 900px; height: 340px;
+    margin: 0 auto; position: relative;
+    cursor: grab; user-select: none; touch-action: pan-y;
+  }
+  .carousel-3d:active { cursor: grabbing; }
+  .carousel-track {
+    width: 100%; height: 100%; position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: transform 0.1s linear;
+  }
+  /* ▼▼▼ 画像サイズ変更ここから ▼▼▼ */
+  .carousel-item {
+    position: absolute; top: 50%; left: 50%;
+    /* 3:4縦長に変更。幅240px、高さ320px */
+    width: 240px; height: 320px;
+    margin-top: -160px; margin-left: -120px;
+    border-radius: 12px; object-fit: cover; background: #fff;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.3);
+    backface-visibility: hidden;
+    border: 2px dashed rgba(0,0,0,0.15);
+  }
+  /* ▲▲▲ 画像サイズ変更ここまで ▲▲▲ */
+  .container { max-width: 900px; margin: -40px auto 0; padding: 0 20px; position: relative; z-index: 2; }
+  .menu-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 768px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
+  .menu-card {
+    background: var(--card-bg); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 28px;
+    display: flex; flex-direction: column; gap: 16px;
+    transition: transform 0.2s ease;
+  }
+  .menu-card:hover { transform: translateY(-4px); }
+  .menu-card h2 { font-size: 1.25rem; font-weight: 700; color: var(--main-color); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; }
+  .price { font-size: 1.5rem; font-weight: 900; color: var(--accent-color); letter-spacing: 0.02em; }
+  .price-note { font-size: 0.9rem; color: var(--muted-color); margin-left: 4px; }
+  .options { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .options li { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; }
+  .options li::before { content: "＋"; color: var(--main-color); font-weight: 700; }
+  .badge-free { display: inline-block; background: var(--accent-color); color: #fff; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; margin-left: 8px; vertical-align: middle; }
+  .card-images { display: flex; gap: 12px; flex-wrap: wrap; }
+  /* ▼▼▼ カード内画像サイズ変更ここから ▼▼▼ */
+  .card-images img {
+    /* 3:4縦長に変更。幅120px、高さ160px */
+    width: 100%; max-width: 120px; height: 160px;
+    object-fit: cover; border-radius: 10px; background: #f1f5f9;
+    border: 2px dashed var(--border-color);
+  }
+  /* ▲▲▲ カード内画像サイズ変更ここまで ▲▲▲ */
+  .full-width { grid-column: 1 / -1; }
+  .center-text { text-align: center; }
+  .footer { text-align: center; margin-top: 60px; padding: 0 20px; }
+  .footer p { color: var(--muted-color); font-size: 0.9rem; margin-bottom: 16px; }
+  .sns-links { display: inline-flex; gap: 20px; align-items: center; }
+  .sns-links a { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: var(--card-bg); border-radius: 50%; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+  .sns-links a:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.15); }
+  .sns-links svg { width: 24px; height: 24px; fill: var(--text-color); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>イラスト依頼メニュー</h1>
+  <p>ご希望に合わせてお描きします。お気軽にご相談ください。</p>
+  <div class="carousel-3d" id="carousel3d">
+    <div class="carousel-track" id="track">
+      <img class="carousel-item" src="commission-list-1.jpg" alt="立ち絵サンプル">
+      <img class="carousel-item" src="commission-list-2.jpg" alt="SD・アイコンサンプル">
+      <img class="carousel-item" src="commission-list-3.jpg" alt="デビューセット">
+      <img class="carousel-item" src="commission-list-4.jpg" alt="ネームロゴ・ヘッダー">
+    </div>
+  </div>
+  <p style="font-size:0.85rem; opacity:0.8; margin-top:12px;">← ドラッグ or スワイプで回転 →</p>
+</header>
+
+<main class="container">
+  <div class="menu-grid">
+
+    <article class="menu-card">
+      <h2>1. 立ち絵（1枚絵）</h2>
+      <div class="card-images">
+        <img src="commission-list-1.jpg" alt="立ち絵サンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">5,000円</span> <span class="price-note">（通常価格 20,000円）</span></p>
+        <p>IRIAM用の立ち絵です。（パーツ分けは無いので、Live2Dにはお使いいただけません）</p>
+        <p>ポーズあり／棒立ち お選びいただけます。</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>1a. バストアップのみ</h2>
+      <div class="card-images">
+        <img src="commission-list-1.jpg" alt="バストアップサンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">3,000円</span> <span class="price-note">（通常価格 12,000円）</span></p>
+        <p>IRIAM向けの胸上のものです。（胸上だけでも動くことを確認済）</p>
+        <p>顔髪は描き込みが多いので全身の半額とまではいきませんが、お手軽に始められたい方にオススメです！</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>2. SD（ちびキャラ）</h2>
+      <div class="card-images">
+        <img src="commission-list-2.jpg" alt="SDサンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">3,000円</span> <span class="price-note">（通常価格 15,000円）</span></p>
+        <p>2頭身〜3頭身程度のキャラになります。（具体的な頭身はご指定、またはご相談ください）</p>
+        <p>ディティールは簡略化して描きますが、特徴となるワンポイント等、ご指定の要素は描き入れます。</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>3. アイコンイラスト</h2>
+      <div class="card-images">
+        <img src="commission-list-2.jpg" alt="アイコンサンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">2,000円</span> <span class="price-note">（通常価格 10,000円）</span></p>
+        <p>各種SNS等でお使いいただけるアイコンサイズのイラストです。</p>
+        <p>基本的にお顔を描きますが、ご指定あれば他の部位でも対応いたします。</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>4. アイコンリング</h2>
+      <div class="card-images">
+        <img src="commission-list-2.jpg" alt="アイコンリングサンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">1,500円</span> <span class="price-note">（通常価格 5,000円）</span></p>
+        <p>お持ちのアイコン画像に上から重ねてご使用いただくフレーム素材です。（中は透過されています）</p>
+        <p>アイコンイラストとの同時購入の場合は、アイコンイラストと合成したものも別でお作りできます。</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>5. ネームロゴ</h2>
+      <div class="card-images">
+        <img src="commission-list-4.jpg" alt="ネームロゴサンプル">
+      </div>
+      <div>
+        <p>期間限定！ <span class="price">2,000円</span> <span class="price-note">（通常価格 8,000円）</span></p>
+        <p>手書きの文字を基本にキャラの要素をふんだんに盛り込んだネームロゴを作成いたします。</p>
+        <p>デザイン性を大事にしつつ、一瞬で名前が読めるロゴになるよう心がけています。</p>
+      </div>
+    </article>
+
+    <article class="menu-card">
+      <h2>6. ヘッダー</h2>
+      <div class="card-images">
+        <img src="commission-list-4.jpg" alt="ヘッダーサンプル">
+      </div>
+      <div>
+        <p>セット価格 期間限定！ <span class="price">2,000円</span> <span class="price-note">（通常価格 8,000円）</span></p>
+        <p>各種単品はセール価格1,500円（通常価格5,000円）</p>
+        <p>IRIAMや各種SNSのヘッダー用画像をお作りします。</p>
+        <p>立ち絵・SDなどのイラスト、ネームロゴとの同時注文の場合はそちらを素材に使用してヘッダーをお作りいたします。</p>
+        <p>ヘッダーのみのご注文の場合は素材を頂ければそちらを使用してお作りいたします。素材が無い場合はヘッダーの背景画像のみとなってしまいますのでお気を付けください。</p>
+      </div>
+    </article>
+
+    <article class="menu-card center-text full-width">
+      <h2>🌟 デビューセット <span class="badge-free">超お買い得！</span></h2>
+      <div class="card-images" style="justify-content:center;">
+        <img src="commission-list-3.jpg" alt="デビューセット">
+      </div>
+      <div>
+        <p>上記5点（立ち絵・SD・アイコンリング・ネームロゴ・ヘッダー2種セット）が</p>
+        <p>通常56,000円のところ、セット価格49,800円！！</p>
+        <p>しかも今なら期間限定価格で<span class="price">約80%OFF</span>の全部込みで</p>
+        <p><span class="price" style="font-size:2rem;">9,800円！</span></p>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>ご依頼・ご相談はXのDMまで</p>
+  <div class="sns-links">
+    <a href="https://x.com/YOUR_HANDLE" target="_blank" rel="noopener noreferrer" aria-label="X">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </div>
+  <p style="margin-top:24px; font-size:0.8rem;">© 猫下おこげ — Illustration Commission</p>
+</footer>
+
+<script>
+(function(){
+  const track=document.getElementById('track');
+  const items=Array.from(track.children);
+  const count=items.length;
+  const radius=360;
+  const angleStep=360/count;
+  items.forEach((item,i)=>{const angle=i*angleStep;item.style.transform=`rotateY(${angle}deg) translateZ(${radius}px)`;});
+  let rotation=0,isDragging=false,startX=0,lastX=0,velocity=0;
+  const carousel=document.getElementById('carousel3d');
+  carousel.addEventListener('mousedown',e=>{isDragging=true;startX=e.clientX;lastX=e.clientX;velocity=0;track.style.transition='none';});
+  window.addEventListener('mousemove',e=>{if(!isDragging)return;const dx=e.clientX-lastX;velocity=dx;rotation+=dx*0.4;lastX=e.clientX;track.style.transform=`rotateY(${rotation}deg)`;});
+  window.addEventListener('mouseup',()=>{if(!isDragging)return;isDragging=false;track.style.transition='transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';rotation+=velocity*3;track.style.transform=`rotateY(${rotation}deg)`;velocity=0;});
+  carousel.addEventListener('touchstart',e=>{isDragging=true;startX=e.touches[0].clientX;lastX=startX;velocity=0;track.style.transition='none';},{passive:false});
+  carousel.addEventListener('touchmove',e=>{if(!isDragging)return;const x=e.touches[0].clientX;const dx=x-lastX;velocity=dx;rotation+=dx*0.4;lastX=x;track.style.transform=`rotateY(${rotation}deg)`;},{passive:false});
+  carousel.addEventListener('touchend',()=>{if(!isDragging)return;isDragging=false;track.style.transition='transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';rotation+=velocity*3;track.style.transform=`rotateY(${rotation}deg)`;velocity=0;});
+})();
+</script>
+</body>
+</html>
