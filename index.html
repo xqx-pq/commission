@@ -231,7 +231,7 @@
   const track=document.getElementById('track');
   const items=Array.from(track.children);
   const count=items.length;
-  const radius=240;
+  const radius=100;
   const angleStep=360/count;
   items.forEach((item,i)=>{const angle=i*angleStep;item.style.transform=`rotateY(${angle}deg) translateZ(${radius}px)`;});
   let rotation=0,isDragging=false,startX=0,lastX=0,velocity=0;
